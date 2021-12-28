@@ -72,12 +72,17 @@ alias ll='ls --color -lah'
 alias vim='nvim'
 alias cfg='/usr/bin/git --git-dir=/home/mt/.cfg/ --work-tree=/home/mt'  # Config Files
 
-
 ## MISC
+
+## bash-git-prompt
 if [ -f "$HOME/.config/bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
     source $HOME/.config/bash-git-prompt/gitprompt.sh
 fi
+
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
 
 # Pyenv something...
 eval "$(pyenv init -)"
