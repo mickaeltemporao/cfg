@@ -87,6 +87,3 @@ fi
 # Pyenv something...
 eval "$(pyenv init -)"
 
-# Welcome message
-echo '.bashrc loaded!'
-
