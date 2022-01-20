@@ -5,7 +5,7 @@
 set -o noclobber
 # Update window size after every command
 shopt -s checkwinsize
-# Automatically trim long paths in the prompt 
+# Automatically trim long paths in the prompt
 PROMPT_DIRTRIM=2
 # Turn on recursive globbing (enables ** to recurse all directories)
 shopt -s globstar 2> /dev/null
@@ -74,6 +74,9 @@ alias cfg='/usr/bin/git --git-dir=/home/mt/.cfg/ --work-tree=/home/mt'  # Config
 
 ## MISC
 
+## vim-gnupg
+export GPG_TTY=$(tty)
+
 ## bash-git-prompt
 if [ -f "$HOME/.config/bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
@@ -87,3 +90,7 @@ fi
 # Pyenv something...
 eval "$(pyenv init -)"
 
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
