@@ -87,15 +87,14 @@ fi
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
 
-# Pyenv something...
+# Pyenv ...
 eval "$(pyenv init -)"
 
-
-
+# Set Custom R Library Folder to work with Nvim-R
+export R_LIBS_USER=~/.local/share/r-libs
 
 # Add bin to PATH for custom scripts
 PATH=$PATH:/home/$USER/.local/bin
-
 
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
