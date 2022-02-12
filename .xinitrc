@@ -1,3 +1,4 @@
-exec slstatus &
-exec dwm
+[ -f ~/.xprofile ] && . ~/.xprofile
+slstatus &
+dwm
 
