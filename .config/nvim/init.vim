@@ -1,35 +1,5 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => PLUGINS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Specify a directory for plugins
-call plug#begin('~/.config/nvim/plugins')
-
-" Plug 'dpelle/vim-Grammalecte'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'honza/vim-snippets'
-Plug 'itchyny/lightline.vim'
-Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
-Plug 'jalvesaq/vimcmdline'
-Plug 'jamessan/vim-gnupg'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'mofiqul/dracula.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'sirver/ultisnips'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-rmarkdown'
-Plug 'vimwiki/vimwiki'
-
-" Initialize plugin system
-call plug#end()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => MISC
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin specification and lua stuff
+lua require('plugins')
 
 " Set System Clipboard by default
 set clipboard=unnamedplus
@@ -145,6 +115,16 @@ let cmdline_term_width         = 80
 let cmdline_term_heigth        = 24
 let cmdline_in_buffer          = 1
 let cmdline_follow_colorscheme = 1
+
+" vim-translate
+nnoremap <silent> <leader>tt :Translate<CR>
+vnoremap <silent> <leader>tt :TranslateVisual<CR>
+vnoremap <silent> <leader>tr :TranslateReplace<CR>
+
+let g:translate#default_languages = {
+      \ 'en': 'fr',
+      \ 'fr': 'en'
+      \ }
 
 " Nvim-R
 vmap <C-Space> <Plug>RDSendSelection
