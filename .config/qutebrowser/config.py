@@ -1,5 +1,16 @@
+# import theme
+import dracula.draw
+
 # Load existing settings made via :set
 config.load_autoconfig()
+
+# theme specs
+dracula.draw.blood(c, {
+    'spacing': {
+        'vertical': 6,
+        'horizontal': 8
+    }
+})
 
 ## Directory to save downloads to.
 c.downloads.location.directory = "/tmp/"
@@ -54,7 +65,6 @@ c.tabs.favicons.scale = 1.25
 ##   - center
 c.tabs.title.alignment = 'left'
 
-
 ## The format to use for the window title.
 c.window.title_format = '{perc}{current_title}'
 c.tabs.title.format = '{current_title}'
@@ -73,5 +83,5 @@ c.fonts.keyhint = '14pt monospace'
 c.fonts.statusbar = '10pt monospace'
 
 ## Default zoom level.
-c.zoom.default = 150%
+c.zoom.default = 150
 
