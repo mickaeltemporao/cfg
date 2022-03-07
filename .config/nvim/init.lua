@@ -1,4 +1,5 @@
 require 'plugins'
-require 'plugin-configs'
+require 'configs'
 require 'options'
+require 'keymaps'
 
