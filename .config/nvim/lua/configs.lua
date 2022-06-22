@@ -28,4 +28,3 @@ require 'lualine'.setup {
   extensions = {}
 }
 
--- vim-translator
