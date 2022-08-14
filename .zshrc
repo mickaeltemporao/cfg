@@ -4,7 +4,7 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias noise="play -n -q synth 2:0:0 brownnoise synth pinknoise mix synth sine amod 0 10 &"
 alias vi="nvim"
 alias vim="nvim"
-alias vifm="~/.config/vifm/scripts/vifmrun"
+alias vifm="~/.local/bin/vifmrun"
 alias vimdiff="nvim -d"
 
 # CSV quicklook
