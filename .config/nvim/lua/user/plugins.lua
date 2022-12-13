@@ -11,7 +11,11 @@ end
 require("packer").startup(
   function(use)
     use "wbthomason/packer.nvim" -- Package Manager
-    use "folke/tokyonight.nvim" -- Theme
+    use "folke/tokyonight.nvim" -- Color Theme
+    use { -- Working with blank lines 
+      "lukas-reineke/indent-blankline.nvim",
+      config = require("config.indent-blankline"),
+    }
     use { -- Treesitter parser
       "nvim-treesitter/nvim-treesitter",
       run = function()
