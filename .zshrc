@@ -6,6 +6,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias vifm="~/.local/bin/vifmrun"
 alias vimdiff="nvim -d"
+alias ipython="ipython --no-autoindent --matplotlib=qt5 --ipython-dir=$HOME/.config/ipython --profile=$USER"
 
 # CSV quicklook
 csv () {
