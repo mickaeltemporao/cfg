@@ -35,5 +35,10 @@ require("packer").startup(
       'nvim-treesitter/nvim-treesitter-textobjects',
       after = 'nvim-treesitter',
     }
+    use { -- Extendable fuzzy finder
+      'nvim-telescope/telescope.nvim', branch = '0.1.x',
+      requires = {'nvim-lua/plenary.nvim'},
+      config = require("config.telescope"),
+    }
   end
 )
