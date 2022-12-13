@@ -1,0 +1,2 @@
+#!/bin/sh
+maim -s ~/Pictures/screenshots/area_$(date +%Y-%m-%d-%T).png
