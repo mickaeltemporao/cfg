@@ -1,5 +1,5 @@
-require 'plugins'
-require 'configs'
-require 'options'
-require 'keymaps'
+require("user.options")
+require("user.keymaps")
+require("user.remap")
+require("user.plugins")
 
