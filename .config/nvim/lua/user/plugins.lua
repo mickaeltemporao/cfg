@@ -10,11 +10,19 @@ end
 
 require("packer").startup(
   function(use)
-    use "wbthomason/packer.nvim" -- Package Manager
-    use "folke/tokyonight.nvim" -- Color Theme
+    use "wbthomason/packer.nvim" -- Package manager
+    use "folke/tokyonight.nvim" -- Color scheme
+    use { -- Color highlighter
+      'norcalli/nvim-colorizer.lua',
+      config = require("config.colorizer"),
+    }
     use { -- Working with blank lines 
       "lukas-reineke/indent-blankline.nvim",
       config = require("config.indent-blankline"),
+    }
+    use { -- Smart comments
+      "numToStr/Comment.nvim",
+      config = require("Comment").setup()
     }
     use { -- Treesitter parser
       "nvim-treesitter/nvim-treesitter",
@@ -26,10 +34,6 @@ require("packer").startup(
     use { -- Additional text objects via treesitter
       'nvim-treesitter/nvim-treesitter-textobjects',
       after = 'nvim-treesitter',
-    }
-    use { -- Color highlighter
-      'norcalli/nvim-colorizer.lua',
-      config = require("config.colorizer"),
     }
   end
 )
