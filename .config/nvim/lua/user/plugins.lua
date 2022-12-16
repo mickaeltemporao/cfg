@@ -29,6 +29,10 @@ require("packer").startup(
       "numToStr/Comment.nvim",
       config = require("Comment").setup()
     }
+    use {
+      "folke/which-key.nvim",
+      config = require("which-key").setup()
+    }
     use { -- Treesitter parser
       "nvim-treesitter/nvim-treesitter",
       run = function()

@@ -4,6 +4,9 @@ vim.opt.wrap = true -- wrap lines
 vim.opt.breakindent = true -- keep wraped lines indented
 vim.opt.termguicolors = true -- enable terminalgui colors
 
+-- general
+vim.opt.timeoutlen = 250 -- milliseconds to wait for code sequence
+
 -- search
 vim.opt.ignorecase = true -- ignore case 
 vim.opt.smartcase = true -- don't ignore case if specified 
