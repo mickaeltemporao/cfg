@@ -28,6 +28,10 @@ require("packer").startup(
       "folke/which-key.nvim",
       config = require("which-key").setup()
     }
+    use {
+      "hkupty/iron.nvim",
+      -- config = get_config('iron'),
+    }
     use { -- Treesitter parser
       "nvim-treesitter/nvim-treesitter",
       run = function()
