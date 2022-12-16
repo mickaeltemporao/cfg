@@ -3,11 +3,6 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd([[packadd packer.nvim]])
 
--- Returns the config file
-local function get_config(name)
-  return string.format("require('plugins/%s')", name)
-end
-
 require("packer").startup(
   function(use)
     use "wbthomason/packer.nvim" -- Package manager
