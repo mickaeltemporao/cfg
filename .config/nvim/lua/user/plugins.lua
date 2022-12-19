@@ -30,7 +30,7 @@ require("packer").startup(
     }
     use {
       "hkupty/iron.nvim",
-      -- config = get_config('iron'),
+      config = require("config.iron")
     }
     use { -- Treesitter parser
       "nvim-treesitter/nvim-treesitter",
