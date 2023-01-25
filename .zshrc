@@ -1,3 +1,7 @@
+# Key bindings
+source "/usr/share/fzf/key-bindings.zsh"
+source "/usr/share/fzf/completion.zsh"
+
 # Aliases
 alias cat="highlight -l -O ansi --force"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
