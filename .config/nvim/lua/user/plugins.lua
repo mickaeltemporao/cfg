@@ -24,11 +24,11 @@ require("packer").startup(
       "numToStr/Comment.nvim",
       config = require("Comment").setup()
     }
-    use {
+    use { -- Shortcuts helper
       "folke/which-key.nvim",
       config = require("which-key").setup()
     }
-    use {
+    use { -- REPL
       "hkupty/iron.nvim",
       config = require("config.iron")
     }

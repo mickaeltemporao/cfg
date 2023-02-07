@@ -13,6 +13,7 @@ require("iron.core").setup {
           "--profile=mt",
         }
       },
-    }
+    },
+    repl_open_cmd = require('iron.view').split.vertical.botright("50%")
   }
 }
