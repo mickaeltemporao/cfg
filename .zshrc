@@ -11,6 +11,9 @@ alias vim="nvim"
 alias vifm="~/.local/bin/vifmrun"
 alias vimdiff="nvim -d"
 alias ipython="ipython --no-autoindent --matplotlib=qt5 --ipython-dir=$HOME/.config/ipython --profile=$USER"
+alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off"
+alias work="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --mode 1920x1080 --rotate right --left-of eDP-1"
+
 
 # CSV quicklook
 csv () {
@@ -53,3 +56,4 @@ bindkey -v
 
 # vim-gnupg
 export GPG_TTY=$(tty)
+
