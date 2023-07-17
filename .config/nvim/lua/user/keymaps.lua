@@ -14,6 +14,10 @@ local send_visual = function()
   ic.send_mark()
 end 
 
+local send_whole = function()
+  ic.send_file()
+end 
+
 local quit_repl = function()
   ic.close_repl()
 end
@@ -22,6 +26,7 @@ end
 vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>', {desc = '[R]EPL [S]tart'})
 vim.keymap.set('n', '<leader>rq', quit_repl) -- TODO: Quit REPL
 vim.keymap.set('n', '<c-cr>', send_line_and_down)
+vim.keymap.set('n', '<leader>rf', send_whole)
 vim.keymap.set('n', '<s-cr>', function() require("iron.core").send_line() end)
 vim.keymap.set('i', '<c-cr>', send_line_and_down)
 vim.keymap.set('i', '<s-cr>', function() require("iron.core").send_line() end)

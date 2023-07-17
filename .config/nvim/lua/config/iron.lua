@@ -11,7 +11,8 @@ require("iron.core").setup {
           "--matplotlib=qt5",
           "--ipython-dir=/home/mt/.config/ipython",
           "--profile=mt",
-        }
+        },
+        format = require("iron.fts.common").bracketed_paste,
       },
     },
     repl_open_cmd = require('iron.view').split.vertical.botright("50%")
