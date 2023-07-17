@@ -6,13 +6,13 @@ source "/usr/share/fzf/completion.zsh"
 alias cat="highlight -l -O ansi --force"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias noise="play -n -q synth 2:0:0 brownnoise synth pinknoise mix synth sine amod 0 10 &"
+# alias vifm="~/.local/bin/vifmrun"
 alias vi="nvim"
 alias vim="nvim"
-alias vifm="~/.local/bin/vifmrun"
 alias vimdiff="nvim -d"
 alias ipython="ipython --no-autoindent --matplotlib=qt5 --ipython-dir=$HOME/.config/ipython --profile=$USER"
-alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off"
-alias work="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --mode 1920x1080 --rotate right --left-of eDP-1"
+alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg"
+alias work="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --mode 1920x1080 --rotate right --left-of eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg"
 
 
 # CSV quicklook
