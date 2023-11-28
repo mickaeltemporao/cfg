@@ -1,5 +1,3 @@
--- This file can be loaded by calling `lua require("plugins")` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd([[packadd packer.nvim]])
 
@@ -10,34 +8,34 @@ require("packer").startup(
     use { -- Fancier statusline
       "nvim-lualine/lualine.nvim" ,
       requires = { "kyazdani42/nvim-web-devicons", opt = true },
-      config = require("config.lualine"),
+      config = function()
+        require("config.lualine")
+      end
     }
     use { -- Color highlighter
       "norcalli/nvim-colorizer.lua",
-      config = require("config.colorizer"),
-    }
-    use { -- Working with blank lines 
-      "lukas-reineke/indent-blankline.nvim",
-      config = require("config.indent-blankline"),
-    }
-    use { -- Smart comments
-      "numToStr/Comment.nvim",
-      config = require("Comment").setup()
+      config = function()
+        require("config.colorizer")
+      end
     }
     use { -- Shortcuts helper
       "folke/which-key.nvim",
       config = require("which-key").setup()
     }
     use { -- REPL
-      "hkupty/iron.nvim",
-      config = require("config.iron")
+      "vigemus/iron.nvim",
+      config = function()
+        require("config.iron")
+      end
     }
     use { -- Treesitter parser
       "nvim-treesitter/nvim-treesitter",
       run = function()
         pcall(require("nvim-treesitter.install").update { with_sync = true })
       end,
-      config = require("config.treesitter"),
+      config = function()
+        require("config.treesitter")
+      end
     }
     use { -- Additional text objects via treesitter
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -45,8 +43,19 @@ require("packer").startup(
     }
     use { -- Extendable fuzzy finder
       "nvim-telescope/telescope.nvim", branch = "0.1.x",
-      requires = {"nvim-lua/plenary.nvim"},
-      config = require("config.telescope"),
+      requires = {
+        {"nvim-lua/plenary.nvim"},
+      },
+      config = function()
+        require("config.telescope")
+      end
+    }
+    use { "nvim-telescope/telescope-bibtex.nvim",
+      requires = {
+        {"nvim-telescope/telescope.nvim"},
+      },
+    }
+    use { "folke/zen-mode.nvim",
     }
   end
 )
