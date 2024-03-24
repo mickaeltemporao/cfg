@@ -1,12 +1,16 @@
 local wk = require("which-key")
 local ic = require("iron.core")
+local hm = os.getenv("HOME")
 
 local pdf = "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography="
-  .. os.getenv("HOME")
-  .. "/references.bib --variable papersize=a4paper -s % -o  /tmp/current.pdf<CR><CR>"
+  .. hm
+  .. "/references.bib --variable papersize=a4paper -s % -o  /tmp/output.pdf<CR><CR>"
 local doc = "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography="
-  .. os.getenv("HOME")
-  .. "/references.bib -s % -o /tmp/current.rtf<CR><CR>"
+  .. hm
+  .. "/references.bib -s % -o /tmp/output.rtf<CR><CR>"
+
+local tex = "<cmd>w<CR><cmd>!textopdf % <CR><CR>"
+
 
 -- Send line to REPL and go to next line
 local send_line_and_down = function()
@@ -88,6 +92,20 @@ local function fuzzy_search()
   })
 end
 
+-- TODO: Maybe allow for grep in files? 
+local function search_notes()
+  require('telescope.builtin').find_files {
+    cwd = hm .. '/Documents/notes/',
+    -- sorting_strategy = 'ascending',
+  }
+end
+
+local function search_config()
+  require('telescope.builtin').find_files {
+    cwd = hm .. '/.config/nvim/lua/',
+  }
+end
+
 -- REPL Keymaps
 -- vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>', {desc = '[R]EPL [S]tart'})
 -- vim.keymap.set('n', '<leader>rq', quit_repl, {desc = '[R]EPL [Q]uit')
@@ -102,7 +120,7 @@ vim.keymap.set("i", "<s-cr>", function()
 end)
 vim.keymap.set("v", "<c-cr>", send_visual)
 vim.keymap.set("i", "@@", "<esc>:Telescope bibtex<CR>")
-vim.keymap.set("n", "<leader>@", ":Telescope bibtex<CR>")
+vim.keymap.set("n", "@", ":ChatGPT<CR>")
 vim.keymap.set("i", "<C-Tab>", "<esc>:bn<CR>")
 vim.keymap.set("n", "<C-Tab>", ":bn<CR>")
 vim.keymap.set("i", "<C-S-Tab>", "<esc>:bp<CR>")
@@ -119,6 +137,7 @@ wk.register({
       q = { quit_repl, "[Q]uit" },
       c = { pdf, "Compile [p]df" },
       d = { doc, "Compile [d]oc" },
+      t = { tex, "Compile [t]ex" },
     },
   },
 }, {
@@ -136,10 +155,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader>o', require('telescope.builtin').oldfiles, { desc = 'Find recently [O]pened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', fuzzy_search, { desc = '[/] Fuzzily search in current buffer' })
-
 
 vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
 vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
@@ -151,6 +169,8 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>sn', search_notes, { desc = '[S]earch [N]notes' })
+vim.keymap.set('n', '<leader>sc', search_config, { desc = '[S]earch [C]onfig' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
