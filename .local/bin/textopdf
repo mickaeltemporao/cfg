@@ -1,0 +1,20 @@
+#!/bin/bash
+file="$1"
+filename="${file%%.*}"
+
+# Proper order for building latex sources with bibtex extra.
+# Show output of last build only.
+{
+  ln -s ~/references.bib .
+  pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$filename" | grep ".*:[0-9]*:.*" 
+  bibtex "$filename"
+  pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$filename" | grep ".*:[0-9]*:.*" 
+} &> /dev/null
+pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$filename" | grep ".*:[0-9]*:.*" 
+printf "\n"
+
+# Move all output files in an output directory. Keep copy of output pdf.
+mv *.log *.aux *.bbl *.blg *.lof *.lot *.toc /tmp/
+cp "$filename".pdf /tmp/output.pdf
+
+exit
