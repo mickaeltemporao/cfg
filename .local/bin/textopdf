@@ -5,7 +5,7 @@ filename="${file%%.*}"
 # Proper order for building latex sources with bibtex extra.
 # Show output of last build only.
 {
-  ln -s ~/references.bib .
+  ln -s ~/.references.bib ./references.bib
   pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$filename" | grep ".*:[0-9]*:.*" 
   bibtex "$filename"
   pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$filename" | grep ".*:[0-9]*:.*" 
