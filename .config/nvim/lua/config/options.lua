@@ -1,4 +1,5 @@
 -- interface
+vim.opt.foldlevel = 99
 vim.opt.completeopt = 'menuone,noselect' -- better completion experience
 vim.opt.colorcolumn = '80' -- highlight over length lines
 vim.opt.cursorline = true -- highlight current line
@@ -27,7 +28,7 @@ vim.opt.swapfile = true -- enable saving unsaved/unwritten files in a *.swp file
 
 
 -- search
-vim.opt.hlsearch = false -- set highlight on search
+vim.opt.hlsearch = true -- set highlight on search
 vim.opt.ignorecase = true -- ignore case 
 vim.opt.smartcase = true -- don't ignore case if specified 
 

@@ -1,7 +1,9 @@
-return { 
-  -- Git related plugins
+return {
+  -- Configless Plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  'folke/zen-mode.nvim',
+  'jamessan/vim-gnupg',
 
   -- Shortcuts helper
   {
@@ -30,8 +32,8 @@ return {
 
   -- "gc" to comment visual regions/lines
   {
-    'numToStr/Comment.nvim', 
-    opts = {} 
+    'numToStr/Comment.nvim',
+    opts = {}
   },
 
   -- Add indentation guides even on blank lines
@@ -39,6 +41,29 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
     opts = {},
+  },
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup {
+        -- api_key_cmd = "pass gpt-manchester"
+        -- api_key_cmd = "pass gpt-private"
+        api_key_cmd = "pass gpt-ced"
+      }
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  },
+  {
+    'preservim/vim-markdown',
+    dependencies = {
+      'godlygeek/tabular'
+    }
   },
 }
 
