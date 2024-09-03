@@ -8,8 +8,9 @@ alias open="xdg-open"
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-# alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg"
-# alias work="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --mode 1920x1080 --rotate right --left-of eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg"
+alias work="xrandr --output eDP-1 --mode 2560x1440 --output DP-2 --mode 1920x1080 --rotate right --left-of eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg; xrandr --auto"
+alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg; xrandr --auto"
+alias dupe="xrandr --output eDP-1 --mode 1920x1080 --output HDMI-1 --same-as eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg; xrandr --auto"
 
 # CSV quicklook
 csv () {
