@@ -1,14 +1,9 @@
-return { 
+return {
     "nvim-telescope/telescope.nvim", branch = "0.1.x",
     cmd = {"Telescope"},
-    dependencies = { 
+    dependencies = {
       'nvim-lua/plenary.nvim',
-      {
-        "nvim-telescope/telescope-bibtex.nvim",
-        config = function ()
-          require('telescope').load_extension('bibtex')
-        end,
-      },
+      "nvim-telescope/telescope-bibtex.nvim",
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
@@ -18,7 +13,7 @@ return {
         end,
       },
     },
-    opts = { 
+    opts = {
       defaults = {
         mappings = {
           i = {
