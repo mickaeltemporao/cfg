@@ -1,3 +1,2 @@
 #!/bin/sh
-maim ~/Pictures/$(date '+%Y%m%d-%H%M%S').png
-
+maim -u ~/Pictures/screenshots/screen_$(date +%Y-%m-%d-%T).png
