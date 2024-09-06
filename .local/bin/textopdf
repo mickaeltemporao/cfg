@@ -14,7 +14,7 @@ pdflatex -shell-escape -interaction=nonstopmode -file-line-error "$filename" | g
 printf "\n"
 
 # Move all output files in an output directory. Keep copy of output pdf.
-mv *.log *.aux *.bbl *.blg *.lof *.lot *.toc /tmp/
+mv *.aux *.bbl *.blg *.lof *.log *.lot *.out *.toc /tmp/
 cp "$filename".pdf /tmp/output.pdf
 
 exit
