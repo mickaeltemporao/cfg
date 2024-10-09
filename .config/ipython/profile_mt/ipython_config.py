@@ -55,7 +55,7 @@
 #  'wx', 'gtk2', 'qt4').
 #  Choices: any of ['asyncio', 'glut', 'gtk', 'gtk2', 'gtk3', 'gtk4', 'osx', 'pyglet', 'qt', 'qt4', 'qt5', 'qt6', 'tk', 'wx', 'gtk2', 'qt4'] (case-insensitive) or None
 #  Default: None
-# c.InteractiveShellApp.gui = None
+c.InteractiveShellApp.gui = "tk"
 
 ## Should variables loaded at startup (by startup files, exec_lines, etc.)
 #          be hidden from tools like %who?
@@ -82,7 +82,7 @@ c.InteractiveShellApp.matplotlib = "tk"
 #          selecting a particular matplotlib backend and loop integration.
 #  Choices: any of ['auto', 'agg', 'gtk', 'gtk3', 'gtk4', 'inline', 'ipympl', 'nbagg', 'notebook', 'osx', 'pdf', 'ps', 'qt', 'qt4', 'qt5', 'qt6', 'svg', 'tk', 'widget', 'wx'] (case-insensitive) or None
 #  Default: None
-# c.InteractiveShellApp.pylab = None
+c.InteractiveShellApp.pylab = "tk"
 
 ## If true, IPython will populate the user namespace with numpy, pylab, etc.
 #          and an ``import *`` is done from numpy and pylab, when using pylab mode.
@@ -245,7 +245,7 @@ c.InteractiveShellApp.matplotlib = "tk"
 #  'gtk2', 'gtk3', 'gtk4', 'osx', 'pyglet', 'qt', 'qt4', 'qt5', 'qt6', 'tk',
 #  'wx', 'gtk2', 'qt4').
 #  See also: InteractiveShellApp.gui
-# c.TerminalIPythonApp.gui = None
+c.TerminalIPythonApp.gui = "tk"
 
 ## Should variables loaded at startup (by startup files, exec_lines, etc.)
 #  See also: InteractiveShellApp.hide_initial_ns
