@@ -8,9 +8,9 @@ alias open="xdg-open"
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias work="xrandr --output eDP-1 --mode 2560x1440 --output DP-2 --mode 1920x1080 --rotate right --left-of eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg; xrandr --auto"
-alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg; xrandr --auto"
-alias dupe="xrandr --output eDP-1 --mode 1920x1080 --output HDMI-1 --same-as eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg; xrandr --auto"
+alias work="xrandr --output eDP-1 --mode 2560x1440 --output DP-2 --mode 1920x1080 --rotate right --left-of eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg"
+alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg"
+alias dupe="xrandr --output eDP-1 --mode 1920x1080 --output HDMI-1 --same-as eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg"
 
 # CSV quicklook
 csv () {
@@ -57,3 +57,9 @@ export GPG_TTY=$(tty)
 # Key bindings
 source "/usr/share/fzf/key-bindings.zsh"
 source "/usr/share/fzf/completion.zsh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/tmp/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/tmp/google-cloud-sdk/completion.zsh.inc'; fi
