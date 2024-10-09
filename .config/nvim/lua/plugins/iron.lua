@@ -13,7 +13,6 @@ return {
             command = {
               "ipython",
               "--no-autoindent",
-              "--matplotlib=qt6",
               "--ipython-dir=" .. os.getenv("HOME") .. "/.config/ipython",
               "--profile=mt",
             },

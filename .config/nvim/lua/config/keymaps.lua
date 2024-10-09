@@ -107,8 +107,6 @@ local function search_config()
 end
 
 -- REPL Keymaps
--- vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>', {desc = '[R]EPL [S]tart'})
--- vim.keymap.set('n', '<leader>rq', quit_repl, {desc = '[R]EPL [Q]uit')
 vim.keymap.set("n", "<c-cr>", send_line_and_down)
 vim.keymap.set("n", "<leader>rf", send_whole)
 vim.keymap.set("n", "<s-cr>", function()
@@ -118,31 +116,25 @@ vim.keymap.set("i", "<c-cr>", send_line_and_down)
 vim.keymap.set("i", "<s-cr>", function()
   require("iron.core").send_line()
 end)
-vim.keymap.set("v", "<c-cr>", send_visual)
-vim.keymap.set("i", "@@", "<esc>:Telescope bibtex<CR>")
-vim.keymap.set("n", "@", ":ChatGPT<CR>")
+vim.keymap.set("v", "<C-cr>", send_visual)
+vim.keymap.set("n", "<C-c>", ":ChatGPT<CR>")
 vim.keymap.set("i", "<C-Tab>", "<esc>:bn<CR>")
 vim.keymap.set("n", "<C-Tab>", ":bn<CR>")
 vim.keymap.set("i", "<C-S-Tab>", "<esc>:bp<CR>")
 vim.keymap.set("n", "<C-S-Tab>", ":bp<CR>")
+vim.keymap.set("i", "<C-c>", "<esc>:Telescope bibtex<CR>")
 
-wk.register({
-  ["<leader>"] = {
-    r = {
-      name = "[R]EPL openrations",
-      s = { "<cmd>IronRepl<cr>", "[S]tart" },
-      r = { "<cmd>IronRestart<cr>", "[R]estart" },
-      f = { "<cmd>IronFocus<cr>", "[F]ocus" },
-      h = { "<cmd>IronHide<cr>", "[H]ide" },
-      q = { quit_repl, "[Q]uit" },
-      c = { pdf, "Compile [p]df" },
-      d = { doc, "Compile [d]oc" },
-      t = { tex, "Compile [t]ex" },
-    },
-  },
-}, {
-  mode = "n",
-})
+wk.add{
+  { "<leader>r", group = "[R]EPL openrations" },
+  { "<leader>rc", "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography=/home/mt/references.bib --variable papersize=a4paper -s % -o /tmp/output.pdf<CR><CR>", desc = "Compile [p]df" },
+  { "<leader>rd", "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography=/home/mt/references.bib -s % -o /tmp/output.rtf<CR><CR>", desc = "Compile [d]oc" },
+  { "<leader>rf", "<cmd>IronFocus<cr>", desc = "[F]ocus" },
+  { "<leader>rh", "<cmd>IronHide<cr>", desc = "[H]ide" },
+  { "<leader>rq", quit_repl, desc = "[Q]uit" },
+  { "<leader>rr", "<cmd>IronRestart<cr>", desc = "[R]estart" },
+  { "<leader>rs", "<cmd>IronRepl<cr>", desc = "[S]tart" },
+  { "<leader>rt", "<cmd>w<CR><cmd>!textopdf % <CR><CR>", desc = "Compile [t]ex" },
+}
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
