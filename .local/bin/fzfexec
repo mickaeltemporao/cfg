@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+#`Change the Internal Field Separator to split paths correctly
+IFS=':'
+
+get_selection() {
+  for p in $PATH; do
+    ls "$p"
+  done \
+    | fzfmenu
+}
+
+if selection=$( get_selection ); then
+  exec "$selection"
+fi
