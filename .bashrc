@@ -10,9 +10,9 @@ alias open="xdg-open"
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias work="xrandr --output eDP-1 --mode 2560x1440 --auto --output DP-2 --mode 1920x1080 --rotate right --left-of eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg"
-alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg | xrandr --auto"
-alias dupe="xrandr --output eDP-1 --mode 1920x1080 --auto --output HDMI-1 --same-as eDP-1; xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg"
+alias work="xrandr --output eDP-1 --mode 2560x1440 --auto --output DP-2 --mode 1920x1080 --rotate right --left-of eDP-1; xwallpaper --output all --zoom  ~/.local/share/wallpaper/wallpaper.jpg"
+alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off; xwallpaper --output all --zoom  ~/.local/share/wallpaper/wallpaper.jpg | xrandr --auto"
+alias dupe="xrandr --output eDP-1 --mode 1920x1080 --auto --output HDMI-1 --same-as eDP-1; xwallpaper --output all --zoom ~/.local/share/wallpaper/wallpaper.jpg"
 
 # pyenv
 eval "$(pyenv init -)"
@@ -20,7 +20,9 @@ eval "$(pyenv init -)"
 # vim-gnupg
 export GPG_TTY=$(tty)
 
-# Key bindings
-source "/usr/share/fzf/key-bindings.bash"
-source "/usr/share/fzf/completion.bash"
+# Key bindings & Misc Autocomplete
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
+source /usr/share/bash-completion/completions/git
+source /usr/share/git/completion/git-completion.bash
 

@@ -29,4 +29,6 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 fi
 
 # set -o vi
+# .NET
+export PATH="$PATH:/home/mt/.dotnet/tools"
 
