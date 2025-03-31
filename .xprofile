@@ -2,5 +2,5 @@ xcompmgr &
 dunst &
 xset r rate 300 50 &
 unclutter &
-xwallpaper --daemon --zoom ~/.local/share/wallpaper/wallpaper.jpg
+xwallpaper --output all --zoom ~/.local/share/wallpaper/wallpaper.jpg
 

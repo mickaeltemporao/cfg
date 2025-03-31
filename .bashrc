@@ -4,7 +4,8 @@ alias ls='ls -lah --color=auto'
 alias grep='grep --color=auto'
 alias cat=bat
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-alias ipython="ipython --no-autoindent --matplotlib=qt6 --ipython-dir=$HOME/.config/ipython --profile=$USER"
+# alias ipython="ipython --no-autoindent --matplotlib=qt6 --ipython-dir=$HOME/.config/ipython --profile=$USER"
+alias ipython="ipython --no-autoindent --ipython-dir=$HOME/.config/ipython --profile=$USER"
 alias noise="play -n -q synth 2:0:0 brownnoise synth pinknoise mix synth sine amod 0 10 &"
 alias open="xdg-open"
 alias vi="nvim"
