@@ -8,7 +8,6 @@ local pdf = "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography="
 local doc = "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography="
   .. hm
   .. "/references.bib -s % -o /tmp/output.rtf<CR><CR>"
-
 local tex = "<cmd>w<CR><cmd>!textopdf % <CR><CR>"
 
 
@@ -18,19 +17,6 @@ local send_line_and_down = function()
   local pos = vim.api.nvim_win_get_cursor(0)
   ic.send_line()
   vim.api.nvim_win_set_cursor(0, { math.min(pos[1] + 1, last_line), pos[2] })
-end
-
-local send_visual = function()
-  ic.mark_visual()
-  ic.send_mark()
-end
-
-local send_whole = function()
-  ic.send_file()
-end
-
-local quit_repl = function()
-  ic.close_repl()
 end
 
 -- [[ Highlight on yank ]]
@@ -43,6 +29,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
 
 -- Function to find the git root directory based on the current buffer's path
 local function find_git_root()
@@ -106,35 +93,42 @@ local function search_config()
   }
 end
 
--- REPL Keymaps
-vim.keymap.set("n", "<c-cr>", send_line_and_down)
-vim.keymap.set("n", "<leader>rf", send_whole)
-vim.keymap.set("n", "<s-cr>", function()
-  require("iron.core").send_line()
-end)
-vim.keymap.set("i", "<c-cr>", send_line_and_down)
-vim.keymap.set("i", "<s-cr>", function()
-  require("iron.core").send_line()
-end)
-vim.keymap.set("v", "<C-cr>", send_visual)
-vim.keymap.set("n", "<C-c>", ":ChatGPT<CR>")
+
+vim.keymap.set("n", "<leader><CR>", send_line_and_down) -- REPL 
+vim.keymap.set("n", "<C-c>", ":ChatGPT<CR>") -- ChatGPT Keymaps
 vim.keymap.set("i", "<C-Tab>", "<esc>:bn<CR>")
 vim.keymap.set("n", "<C-Tab>", ":bn<CR>")
 vim.keymap.set("i", "<C-S-Tab>", "<esc>:bp<CR>")
 vim.keymap.set("n", "<C-S-Tab>", ":bp<CR>")
+vim.keymap.set("n", "<b>", ":<CR>")
 vim.keymap.set("i", "<C-c>", "<esc>:Telescope bibtex<CR>")
 
+
 wk.add{
-  { "<leader>r", group = "[R]EPL openrations" },
-  { "<leader>rc", "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography=/home/mt/references.bib --variable papersize=a4paper -s % -o /tmp/output.pdf<CR><CR>", desc = "Compile [p]df" },
-  { "<leader>rd", "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography=/home/mt/references.bib -s % -o /tmp/output.rtf<CR><CR>", desc = "Compile [d]oc" },
-  { "<leader>rf", "<cmd>IronFocus<cr>", desc = "[F]ocus" },
-  { "<leader>rh", "<cmd>IronHide<cr>", desc = "[H]ide" },
-  { "<leader>rq", quit_repl, desc = "[Q]uit" },
-  { "<leader>rr", "<cmd>IronRestart<cr>", desc = "[R]estart" },
-  { "<leader>rs", "<cmd>IronRepl<cr>", desc = "[S]tart" },
-  { "<leader>rt", "<cmd>w<CR><cmd>!textopdf % <CR><CR>", desc = "Compile [t]ex" },
+  { "<leader>c", group = "[C]ompile Openrations" },
 }
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    local wk = require("which-key")
+    wk.add{
+      { "<leader>cf", pdf, desc = "Compile file to PDF" },
+      { "<leader>cd", doc, desc = "Compile file to DOC" },
+    }
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "plaintex",
+  callback = function()
+    local wk = require("which-key")
+    wk.add{
+      { "<leader>cf", tex, desc = "Compile file to PDF" },
+    }
+  end,
+})
+
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
