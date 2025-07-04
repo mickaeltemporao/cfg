@@ -10,7 +10,13 @@ local doc = "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography="
   .. "/references.bib -s % -o /tmp/output.rtf<CR><CR>"
 local tex = "<cmd>w<CR><cmd>!textopdf % <CR><CR>"
 
-
+-- local function rendertyp()
+--   local filepath = vim.fn.expand("%:p")
+--   vim.fn.jobstart({"openwatch", filepath}, {
+--     detach = true,
+--   })
+-- end
+--
 -- Send line to REPL and go to next line
 local send_line_and_down = function()
   local last_line = vim.fn.line("$")
@@ -105,16 +111,27 @@ vim.keymap.set("i", "<C-c>", "<esc>:Telescope bibtex<CR>")
 
 
 wk.add{
-  { "<leader>c", group = "[C]ompile Openrations" },
+  { "<leader>r", group = "[R]ender Openrations" },
 }
+
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "typst",
+--   callback = function()
+--     local wk = require("which-key")
+--     wk.add{
+--       { "<leader>rf", rendertyp, desc = "Watch and open Typst PDF" },
+--     }
+--   end,
+--   }
+-- )
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
     local wk = require("which-key")
     wk.add{
-      { "<leader>cf", pdf, desc = "Compile file to PDF" },
-      { "<leader>cd", doc, desc = "Compile file to DOC" },
+      { "<leader>rf", pdf, desc = "Render file to PDF" },
+      { "<leader>rd", doc, desc = "Render file to DOC" },
     }
   end,
 })
@@ -124,7 +141,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     local wk = require("which-key")
     wk.add{
-      { "<leader>cf", tex, desc = "Compile file to PDF" },
+      { "<leader>rf", tex, desc = "Render file to PDF" },
     }
   end,
 })

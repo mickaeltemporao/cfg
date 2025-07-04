@@ -7,7 +7,7 @@ vim.opt.list = true -- display unprintable characters f12 - switches
 vim.opt.listchars = { tab = [[→→]], trail = '•', extends = '»', precedes = '«' }  -- {tab = '••'|'>~',eol = '↴'|'¶'|'$', nbsp = '␣'|'%', space = '_' }
 vim.opt.mouse = 'a' -- automatically enable mouse usage
 vim.opt.number = true -- line numbers
-vim.opt.splitbelow = true 
+vim.opt.splitbelow = true
 vim.opt.splitright = true -- open new split panes to right and below and next line
 vim.opt.termguicolors = true -- enable terminalgui colors
 vim.opt.updatetime = 100 -- quick diagnostic messages default 4000.
@@ -26,7 +26,6 @@ vim.opt.backupcopy = 'auto' -- tells neovim how backups are done
 vim.opt.backupext = '.vimbak' -- the extension to be used for vim backup files
 vim.opt.swapfile = true -- enable saving unsaved/unwritten files in a *.swp file
 
-
 -- search
 vim.opt.hlsearch = true -- set highlight on search
 vim.opt.ignorecase = true -- ignore case 
@@ -37,7 +36,7 @@ vim.opt.tabstop = 2 -- number of spaces a tab takes
 vim.opt.shiftwidth = 2 -- number of characters used for indentation
 vim.opt.softtabstop = 2 -- number of spaces a tab counts when editing
 vim.opt.expandtab = true -- transform tab to spaces
-vim.opt.wrap = true -- wrap lines
+vim.opt.wrap = false -- disable wrap lines
 vim.opt.breakindent = true -- keep wraped lines indented
 
 -- global variables

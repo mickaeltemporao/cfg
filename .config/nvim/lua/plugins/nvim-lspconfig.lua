@@ -64,25 +64,41 @@ return {
       -- tsserver = {},
       -- html = { filetypes = { 'html', 'twig', 'hbs'} },
       pylsp = {
-        pylsp = {
-          telemetry = { enable = false },
-          plugins = {
-            pycodestyle = {
-              maxLineLength = 80,
-              black = { enabled = true },
-              autopep8 = { enabled = false },
-              yapf = { enabled = false },
-              pylint = { enabled = true, executable = "pylint" },
-              pyflakes = { enabled = false },
-              pycodestyle = { enabled = false },
-              pylsp_mypy = { enabled = true },
-              jedi_completion = { fuzzy = true },
-              pyls_isort = { enabled = true },
-            }
-          }
-        },
+        telemetry = { enable = false },
+        plugins = {
+          pycodestyle = {
+            ignore = {'W391'},
+            maxLineLength = 120,
+            black = { enabled = true },
+            autopep8 = { enabled = true},
+            yapf = { enabled = false },
+            pylint = { enabled = true, executable = "pylint" },
+            pyflakes = { enabled = false },
+            pycodestyle = { enabled = false },
+            pylsp_mypy = { enabled = true },
+            jedi_completion = { fuzzy = true },
+            pyls_isort = { enabled = true },
+          },
+          ruff = {
+            enabled = true,  -- Enable the plugin
+            formatEnabled = true,  -- Enable formatting using ruffs formatter
+            executable = "<path-to-ruff-bin>",  -- Custom path to ruff
+            config = "<path_to_custom_ruff_toml>",  -- Custom config for ruff to use
+            extendSelect = { "I" },  -- Rules that are additionally used by ruff
+            extendIgnore = { "C90" },  -- Rules that are additionally ignored by ruff
+            format = { "I" },  -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
+            severities = { ["D212"] = "I" },  -- Optional table of rules where a custom severity is desired
+            unsafeFixes = false,  -- Whether or not to offer unsafe fixes as code actions. Ignored with the "Fix All" action
+            lineLength = 80,  -- Line length to pass to ruff checking and formatting
+            exclude = { "__about__.py" },  -- Files to be excluded by ruff checking
+            select = { "F" },  -- Rules to be enabled by ruff
+            ignore = { "D210" },  -- Rules to be ignored by ruff
+            perFileIgnores = { ["__init__.py"] = "CPY001" },  -- Rules that should be ignored for specific files
+            preview = false,  -- Whether to enable the preview style linting and formatting.
+            targetVersion = "py310",  -- The minimum python version to target (applies for both linting and formatting).
+          },
+        }
       },
-
       lua_ls = {
         Lua = {
           workspace = { checkThirdParty = false },
@@ -91,6 +107,13 @@ return {
           -- diagnostics = { disable = { 'missing-fields' } },
         },
       },
+      tinymist = {
+        tinymist = {
+          formatterMode = "typstyle",
+          exportPdf = "onType",
+          semanticTokens = "disable",
+        }
+      }
     }
 
     -- Setup neovim lua configuration
@@ -107,18 +130,16 @@ return {
       ensure_installed = vim.tbl_keys(servers),
     }
 
-    mason_lspconfig.setup_handlers {
-      function(server_name)
-        require('lspconfig')[server_name].setup {
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers[server_name],
-          filetypes = (servers[server_name] or {}).filetypes,
-        }
-      end,
-    }
-
-
+    -- mason_lspconfig.setup_handlers {
+    --   function(server_name)
+    --     require('lspconfig')[server_name].setup {
+    --       capabilities = capabilities,
+    --       on_attach = on_attach,
+    --       settings = servers[server_name],
+    --       filetypes = (servers[server_name] or {}).filetypes,
+    --     }
+    --   end,
+    -- }
       end
 }
 
