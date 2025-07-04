@@ -1,7 +1,6 @@
 return {
   "robitx/gp.nvim",
   config = function()
-    local academic_prompt = require("prompts").academic_prompt
     local conf = {
       providers = {
         openai = {
@@ -33,16 +32,6 @@ return {
           model = { model = "o4-mini", temperature = 1.1, top_p = 1 },
           -- system prompt (use this to specify the persona/role of the AI)
           system_prompt = require("gp.defaults").chat_system_prompt,
-        },
-        {
-          provider = "openai",
-          name = "Academic-o4-mini",
-          chat = true,
-          command = false,
-          -- string with model name or table with model name and parameters
-          model = { model = "o4-mini", temperature = 1.1, top_p = 1 },
-          -- system prompt (use this to specify the persona/role of the AI)
-          system_prompt = academic_prompt,
         },
       }
     }
