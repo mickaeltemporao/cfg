@@ -13,10 +13,10 @@ dracula.draw.blood(c, {
 })
 
 ## Directory to save downloads to.
-c.downloads.location.directory = "/tmp/"
+# c.downloads.location.directory = "/tmp/"
 
 ## Prompt the user for the download location.
-c.downloads.location.prompt = False
+c.downloads.location.prompt = True
 
 ## Automatically start playing <video> elements.
 c.content.autoplay = False
