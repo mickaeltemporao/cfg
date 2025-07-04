@@ -1,10 +1,27 @@
 #!/usr/bin/env bash
 # fb - buku bookmarks fzfmenu opener
-buku -p -f 4 |
+
+# Function to add a new bookmark
+add_bookmark() {
+    read -p "Enter the URL to add: " url
+    read -p "Enter the title for the bookmark: " title
+    buku -a "$url" -t "$title"
+}
+
+bookmark=$(buku -p -f 4 |
     awk -F $'\t' '{
         printf "%s \t\x1b[38;5;208m%s\033[0m \t %s \n", $1, $2, $4
     }' |
     fzfmenu --tabstop 1 --ansi -d $'\t' --with-nth=2,3 \
-        --preview-window='bottom:10%' --preview 'printf "\x1b[38;5;117m%s\033[0m\n" {2}' |
-        awk '{print $2}' | xargs -d '\n' -I{} -n1 -r xdg-open '{}'
+        --preview-window='bottom:10%' --preview 'printf "\x1b[38;5;117m%s\033[0m\n" {2}')
 
+if [ -n "$bookmark" ]; then
+    url=$(echo "$bookmark" | awk '{print $2}')
+    xdg-open "$url"
+else
+    echo "No bookmark selected."
+    read -p "Would you like to add a new bookmark? (y/N): " answer
+    if [[ "$answer" =~ ^[Yy]$ ]]; then
+        add_bookmark
+    fi
+fi

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Create a temporary file with a .md extension
+tmpfile=$(mktemp /tmp/tmp-XXX.md)
+
+# Open it with nvim
+nvim "$tmpfile"

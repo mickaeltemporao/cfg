@@ -1,0 +1,63 @@
+#!/bin/bash
+
+BIB_SOURCE="$HOME/.references.bib"
+BIB_LINK="./references.bib"
+
+
+cleanup() {
+    echo "Cleaning up..."
+    if [ -L "$BIB_LINK" ]; then
+        rm "$BIB_LINK"
+        echo "Removed symlink: $BIB_LINK"
+    else
+        echo "$BIB_LINK is not a symlink, skipping removal."
+    fi
+    # Kill background typst watch if running
+    if [ -n "$WATCH_PID" ]; then
+        kill "$WATCH_PID" 2>/dev/null
+    fi
+    exit 0
+}
+
+# Trap INT (Ctrl+C), TERM, and normal EXIT to run cleanup
+trap cleanup INT TERM EXIT
+
+# === Argument check ===
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <filename>"
+    exit 1
+fi
+
+filename="$1"
+extension="${filename##*.}"
+
+# === Symlink setup ===
+if [ -e "$BIB_SOURCE" ]; then
+    ln -sf "$BIB_SOURCE" "$BIB_LINK"
+    echo "Symlink created: $BIB_LINK → $BIB_SOURCE"
+else
+    echo "Warning: Bibliography source not found at $BIB_SOURCE"
+fi
+
+# === Main logic ===
+#
+if [ "$extension" = "typ" ]; then
+    echo "Detected .typ file: $filename"
+
+    # Start typst watch in background
+    typst watch "$filename" &
+    WATCH_PID=$!
+
+    # Derive output PDF filename
+    pdf_file="${filename%.typ}.pdf"
+
+    # Wait for PDF to be generated (adjust if needed)
+    sleep 1
+
+    # Open PDF viewer
+    zathura "$pdf_file"
+else
+    echo "Not a .typ file. Opening /tmp/output.pdf"
+    zathura /tmp/output.pdf
+fi

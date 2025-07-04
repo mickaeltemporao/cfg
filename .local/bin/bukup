@@ -1,0 +1,18 @@
+#!/bin/zsh
+# Initialize the counter
+counter=70
+# Set a limit for the loop
+limit=80
+# Loop until the counter exceeds the limit
+while [ $counter -le $limit ]; do
+  # Inform about the command being run
+  echo "Running command with number $counter"
+  
+  # Run buku with counter and open nvim
+  buku -w $counter "nvim -c wq"
+  
+  # Open nvim and automatically write and quit
+  
+  # Increment the counter
+  ((counter++))
+done
