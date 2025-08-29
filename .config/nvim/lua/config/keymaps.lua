@@ -1,4 +1,3 @@
-local wk = require("which-key")
 local ic = require("iron.core")
 local hm = os.getenv("HOME")
 
@@ -10,13 +9,7 @@ local doc = "<cmd>w<CR><cmd>!pandoc --citeproc --bibliography="
   .. "/references.bib -s % -o /tmp/output.rtf<CR><CR>"
 local tex = "<cmd>w<CR><cmd>!textopdf % <CR><CR>"
 
--- local function rendertyp()
---   local filepath = vim.fn.expand("%:p")
---   vim.fn.jobstart({"openwatch", filepath}, {
---     detach = true,
---   })
--- end
---
+
 -- Send line to REPL and go to next line
 local send_line_and_down = function()
   local last_line = vim.fn.line("$")
@@ -99,20 +92,10 @@ local function search_config()
   }
 end
 
+vim.keymap.set('n', '<leader>r', '<Nop>', { desc = "[R]ender Openrations" })
 
 vim.keymap.set("n", "<leader><CR>", send_line_and_down) -- REPL 
-vim.keymap.set("n", "<C-c>", ":ChatGPT<CR>") -- ChatGPT Keymaps
-vim.keymap.set("i", "<C-Tab>", "<esc>:bn<CR>")
-vim.keymap.set("n", "<C-Tab>", ":bn<CR>")
-vim.keymap.set("i", "<C-S-Tab>", "<esc>:bp<CR>")
-vim.keymap.set("n", "<C-S-Tab>", ":bp<CR>")
-vim.keymap.set("n", "<b>", ":<CR>")
-vim.keymap.set("i", "<C-c>", "<esc>:Telescope bibtex<CR>")
 
-
-wk.add{
-  { "<leader>r", group = "[R]ender Openrations" },
-}
 
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "typst",
@@ -125,57 +108,56 @@ wk.add{
 --   }
 -- )
 
+vim.keymap.set("i", "<C-c>", "<esc>:Telescope bibtex<CR>")
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
-    local wk = require("which-key")
-    wk.add{
-      { "<leader>rf", pdf, desc = "Render file to PDF" },
-      { "<leader>rd", doc, desc = "Render file to DOC" },
-    }
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "plaintex",
-  callback = function()
-    local wk = require("which-key")
-    wk.add{
-      { "<leader>rf", tex, desc = "Render file to PDF" },
-    }
+    vim.keymap.set('n', '<leader>rf', pdf, { desc = "[R]ender file to PDF" })
+    vim.keymap.set('n', '<leader>rd', doc, { desc = "[R]ender file to DOC" })
   end,
 })
 
 
-vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
+vim.api.nvim_create_autocmd(
+  "FileType", 
+  {
+    pattern = "plaintex",
+    callback = function()
+      vim.keymap.set('n', '<leader>rf', pdf, { desc = "[R]ender file to PDF" })
+    end,
+  }
+)
 
+
+vim.api.nvim_create_user_command(
+  'LiveGrepGitRoot', 
+  live_grep_git_root, 
+  { desc = "Live to search in git root" }
+)
+
+-- Break sentence into its own line. 
+vim.keymap.set('n', '<leader>j', ')hr<CR><Esc>zz', { desc = 'Break sentence and move down' })
 
 -- Keymaps for better default experience
--- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
 vim.keymap.set('n', '<leader>o', require('telescope.builtin').oldfiles, { desc = 'Find recently [O]pened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', fuzzy_search, { desc = '[/] Fuzzily search in current buffer' })
-
-vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
-vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-vim.keymap.set('n', '<leader>sn', search_notes, { desc = '[S]earch [N]notes' })
-vim.keymap.set('n', '<leader>sc', search_config, { desc = '[S]earch [C]onfig' })
-
+vim.keymap.set('n', '<leader>f/', telescope_live_grep_open_files, { desc = '[F]ind [/] in Open Files' })
+vim.keymap.set('n', '<leader>fs', require('telescope.builtin').builtin, { desc = '[F]ind [S]elect Telescope' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
+vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
+vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = '[G]it [F]iles' })
+vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[F]ind by [G]rep on Git Root' })
+vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]esume' })
+vim.keymap.set('n', '<leader>fn', search_notes, { desc = '[F]ind [N]notes' })
+vim.keymap.set('n', '<leader>f,', search_config, { desc = '[F]ind [C]onfig' })
+vim.keymap.set('n', '<leader>f', '<Nop>', { desc = '[F]ind Operations' })
 -- Diagnostic keymaps
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[F]earch [D]iagnostics' })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })

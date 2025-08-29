@@ -1,6 +1,6 @@
 return { 
   'chomosuke/typst-preview.nvim',
-  lazy = false, -- or ft = 'typst'
+  ft = 'typst',
   version = '1.*',
   config = function()
     require 'typst-preview'.setup {
@@ -10,8 +10,10 @@ return {
 
       -- Custom format string to open the output link provided with %s
       -- Example: open_cmd = 'firefox %s -P typst-preview --class typst-preview'
-      open_cmd = 'brave --app=%s',
-      
+      open_cmd = 'open -a Firefox "%s"',
+      -- open_cmd = 'brave --app=%s',
+      -- open_cmd = 'open -a safari %s',
+      -- open_cmd = 'qutebrowser %s',
 
       -- Custom port to open the preview server. Default is random.
       -- Example: port = 8000
@@ -23,7 +25,8 @@ return {
       -- Setting this to '{"rest": "<option>","image": "<option>"}' will apply
       -- your choice of color inversion to images and everything else
       -- separately.
-      invert_colors = 'never',
+      -- invert_colors = 'never',
+      invert_colors = 'auto',
 
       -- Whether the preview will follow the cursor in the source file
       follow_cursor = true,

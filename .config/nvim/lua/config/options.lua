@@ -1,4 +1,7 @@
 -- interface
+-- vim.opt.cmdheight=0
+-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 vim.opt.foldlevel = 99
 vim.opt.completeopt = 'menuone,noselect' -- better completion experience
 vim.opt.colorcolumn = '80' -- highlight over length lines
@@ -39,18 +42,20 @@ vim.opt.expandtab = true -- transform tab to spaces
 vim.opt.wrap = false -- disable wrap lines
 vim.opt.breakindent = true -- keep wraped lines indented
 
+-- netrw 
+-- vim.g.netrw_altv = 1
+vim.g.netrw_banner = 0
+-- vim.g.netrw_keepdir = 0
+-- vim.g.netrw_liststyle = 3
+-- vim.g.netrw_preview = 1
+-- vim.g.netrw_winsize = 30
+-- vim.g.netrw_browse_split = 4
+
 -- global variables
 vim.g.mapleader = ' ' -- map leader to space bar
-vim.g.maplocalleader = ' '
-vim.g.python3_host_prog = os.getenv('HOME') .. '/.pyenv/versions/3.10.1/bin/python3' -- python path
+vim.g.maplocalleader = '\\' -- map local leader to backspace 
+vim.g.python3_host_prog = os.getenv('HOME') .. '/.pyenv/versions/3.13.5/bin/python3' -- python path
 vim.g.loaded_python_provider = 0 -- disable Python2 support
 vim.g.loaded_perl_provider = 0 -- disable perl provider
 vim.g.loaded_ruby_provider = 0 -- disable ruby provider
 vim.g.loaded_node_provider = 0 -- disable node provider
-
--- netrw style
-vim.g.netrw_altv = 1
-vim.g.netrw_winsize = 30
-vim.g.netrw_preview = 1
-vim.g.netrw_liststyle = 3
-

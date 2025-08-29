@@ -2,7 +2,6 @@ return {
   -- Configless Plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-  'folke/zen-mode.nvim',
   'jamessan/vim-gnupg',
   -- "gc" to comment visual regions/lines
   {
@@ -10,11 +9,6 @@ return {
   },
   {
     "folke/zen-mode.nvim",
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
   },
   -- Add indentation guides even on blank lines
   {
@@ -29,6 +23,7 @@ return {
       'godlygeek/tabular'
     }
   },
+  -- Notepad
   {
     'lervag/wiki.vim',
     config = function()

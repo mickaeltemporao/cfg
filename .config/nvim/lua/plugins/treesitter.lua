@@ -40,7 +40,7 @@ return {
         'awk', 'bash', 'bibtex', 'c', 'cpp', 'css', 'dockerfile', 'go', 'html',
         'java', 'javascript', 'json', 'julia', 'latex', 'lua', 'luadoc', 'luap',
         'markdown', 'markdown_inline', 'python', 'query', 'r', 'regex', 'rust',
-        'toml', 'tsx', 'typescript', 'vim', 'vimdoc', 'yaml', 
+        'typst', 'toml', 'tsx', 'typescript','vim', 'vimdoc', 'yaml',
       },
       incremental_selection = {
         enable = true,
