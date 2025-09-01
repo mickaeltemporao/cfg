@@ -1,3 +1,7 @@
+if [ -f ~/.local/bin/sensible.bash ]; then
+   source ~/.local/bin/sensible.bash
+fi
+
 PROMPT_COMMAND='PS1_CMD1=$(git branch --show-current 2>/dev/null)'; PS1='\[\e[38;5;125;1m\]\u\[\e[0m\]@\[\e[38;5;31m\]\h\[\e[0m\] \[\e[38;5;119;1m\]\w\[\e[0m\] \[\e[38;5;199;53m\]${PS1_CMD1}\n\[\e[0m\]\$ '
 
 alias ls='ls -lah --color=auto'
@@ -14,7 +18,6 @@ alias work="xrandr --output eDP-1 --mode 2560x1440 --auto --output DP-1-1 --mode
 alias home="xrandr --output eDP-1 --mode 2560x1440 --output HDMI-1 --off; xwallpaper --output all --zoom  ~/.local/share/wallpaper/wallpaper.jpg | xrandr --auto"
 alias dupe="xrandr --output eDP-1 --mode 1920x1080 --auto --output HDMI-1 --same-as eDP-1; xwallpaper --output all --zoom ~/.local/share/wallpaper/wallpaper.jpg"
 alias pysh="source .venv/bin/activate"
-
 
 # pyenv
 eval "$(pyenv init -)"

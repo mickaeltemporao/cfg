@@ -1,7 +1,7 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="st"
-export BROWSER="brave"
+export BROWSER="firefox"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/passwords"
 
