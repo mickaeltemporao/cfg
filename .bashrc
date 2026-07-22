@@ -1,3 +1,6 @@
+export GPG_TTY=$(tty)
+export HISTCONTROL=ignoreboth
+
 # The Gitted prompt...
 source /usr/share/git/completion/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -9,14 +12,8 @@ RESET='\[\e[0m\]'
 PROMPT_COMMAND='__prompt_git="$(__git_ps1 " [%s]")"'
 PS1="${BLUE}\W${RESET}${GRAY}\${__prompt_git}${RESET} \$ "
 
+# Fun with aliases
 alias dot="/usr/bin/git --git-dir=$HOME/.dot/ --work-tree=$HOME"
-
-# Enable tab completion for the 'dot' git alias
-if [ -f /usr/share/bash-completion/completions/git ]; then
-    source /usr/share/bash-completion/completions/git
-    __git_complete dot __git_main
-fi
-
 alias ls="ls -lah --color=auto"
 alias grep="grep --color=auto"
 alias vi="nvim"
@@ -28,6 +25,13 @@ alias ipython="ipython --no-autoindent --ipython-dir=$HOME/.config/ipython --pro
 alias en="source .venv/bin/activate"
 alias nm="neomutt"
 
+# Tab completion for the 'dot' config
+if [ -f /usr/share/bash-completion/completions/git ]; then
+    source /usr/share/bash-completion/completions/git
+    __git_complete dot __git_main
+fi
+
+# Some python sugar
 py() {
   (
     source .venv/bin/activate
@@ -37,7 +41,7 @@ py() {
   )
 }
 
-# Helping mac users...
+# Helping Mac-ers...
 if command -v brew >/dev/null 2>&1; then
     eval "$(brew shellenv)"
 
@@ -50,7 +54,4 @@ fi
 # Some utils
 eval "$(pyenv init -)"
 eval "$(fzf --bash)"
-
-export GPG_TTY=$(tty)
-export HISTCONTROL=ignoreboth
 
