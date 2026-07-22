@@ -5,26 +5,18 @@ export BROWSER="firefox"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/passwords"
 
-# Adds Pyenv to $PATH
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+# R Library Folder (for Nvim-R)
+export R_LIBS_USER="$HOME/.local/share/r-libs"
 
-# Ads Ruby Gems to $PATH
-# export GEM_HOME="$(gem env user_gemhome)"
-# export PATH="$PATH:$GEM_HOME/bin"
+# User PATH Additions
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.pyenv/bin:$PATH"
 
-# Set Custom R Library Folder to work with Nvim-R
-export R_LIBS_USER=~/.local/share/r-libs
-
-# Adds `~/.local/bin` to $PATH
-export PATH="$PATH:$HOME/.local/bin"
-
-# vim-gnupg
-export GPG_TTY=$(tty)
-
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR:-0}" -eq 1 ]; then
-  exec startx
+# Pyenv initialization (path)
+if command -v pyenv >/dev/null 2>&1; then
+    eval "$(pyenv init --path)"
 fi
 
-# if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
+# Auto-start X11 on TTY1 login
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR:-0}" -eq 1 ]; then
+    exec startx
+fi

@@ -51,12 +51,6 @@ fi
 eval "$(pyenv init -)"
 eval "$(fzf --bash)"
 
-# Adds `~/.local/bin` to $PATH
-export PATH="$HOME/.local/bin:$PATH"
-# vim-gnupg
 export GPG_TTY=$(tty)
 export HISTCONTROL=ignoreboth
 
-
-export PATH="/home/mt/.local/bin:$PATH"
-export PATH="/home/mt/.cargo/bin:$PATH"
