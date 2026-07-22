@@ -1,6 +1,0 @@
-xcompmgr &
-dunst &
-xset r rate 300 50 &
-unclutter &
-xwallpaper --output all --zoom ~/.local/share/wallpaper/wallpaper.jpg
-

@@ -10,6 +10,13 @@ PROMPT_COMMAND='__prompt_git="$(__git_ps1 " [%s]")"'
 PS1="${BLUE}\W${RESET}${GRAY}\${__prompt_git}${RESET} \$ "
 
 alias dot="/usr/bin/git --git-dir=$HOME/.dot/ --work-tree=$HOME"
+
+# Enable tab completion for the 'dot' git alias
+if [ -f /usr/share/bash-completion/completions/git ]; then
+    source /usr/share/bash-completion/completions/git
+    __git_complete dot __git_main
+fi
+
 alias ls="ls -lah --color=auto"
 alias grep="grep --color=auto"
 alias vi="nvim"
@@ -19,6 +26,7 @@ alias bat="bat --paging=never"
 alias noise="play -n -q synth 2:0:0 brownnoise synth pinknoise mix synth sine amod 0 10 &"
 alias ipython="ipython --no-autoindent --ipython-dir=$HOME/.config/ipython --profile=$USER"
 alias en="source .venv/bin/activate"
+alias nm="neomutt"
 
 py() {
   (
@@ -47,3 +55,8 @@ eval "$(fzf --bash)"
 export PATH="$HOME/.local/bin:$PATH"
 # vim-gnupg
 export GPG_TTY=$(tty)
+export HISTCONTROL=ignoreboth
+
+
+export PATH="/home/mt/.local/bin:$PATH"
+export PATH="/home/mt/.cargo/bin:$PATH"
