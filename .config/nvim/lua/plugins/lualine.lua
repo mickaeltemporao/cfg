@@ -6,7 +6,7 @@ return {
     options = {
       component_separators = '|',
       section_separators = '',
-      theme = "dracula",
+      theme = "tokyonight",
     }
   }
 }
